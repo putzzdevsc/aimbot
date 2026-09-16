@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#050706">
+  <meta name="description" content="Sewa SC Bot WhatsApp RAGNARBOTZ - 48+ Plugin, Anti Delay, Update Otomatis.">
+  <title>Sewa SC Bot WhatsApp — RAGNARBOTZ</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    :root {
+      --neon: #00ff88;
+      --neon-soft: rgba(0,255,136,.12);
+      --bg: #050706;
+      --card: #0b100d;
+      --border: rgba(0,255,136,.16);
+      --muted: #9aa59f;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Poppins", sans-serif;
+      background:
+        radial-gradient(circle at 80% 0%, rgba(0,255,136,.08), transparent 28rem),
+        radial-gradient(circle at 10% 35%, rgba(0,255,136,.045), transparent 24rem),
+        var(--bg);
+      color: #f4fff8;
+      overflow-x: hidden;
+    }
+    .neon { color: var(--neon); }
+    .neon-bg { background: var(--neon); color: #031009; }
+    .glass {
+      background: rgba(11,16,13,.72);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+    .glow {
+      box-shadow: 0 0 30px rgba(0,255,136,.10), inset 0 0 30px rgba(0,255,136,.025);
+    }
+    .glow-btn { box-shadow: 0 0 24px rgba(0,255,136,.20); }
+    .grid-bg {
+      background-image:
+        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+      background-size: 42px 42px;
+      mask-image: linear-gradient(to bottom, black, transparent 90%);
+    }
+    .hero-orb {
+      position: absolute; width: 340px; height: 340px; border-radius: 999px;
+      background: rgba(0,255,136,.09); filter: blur(80px); pointer-events:none;
+    }
+    .fade-up { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease; }
+    .fade-up.show { opacity: 1; transform: translateY(0); }
+    .feature-card { transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease; }
+    .feature-card:hover { transform: translateY(-5px); border-color: rgba(0,255,136,.42); box-shadow: 0 12px 35px rgba(0,255,136,.08); }
+    .price-card { transition: transform .25s ease, border-color .25s ease; }
+    .price-card:hover { transform: translateY(-6px); border-color: rgba(0,255,136,.45); }
+    .popular { border-color: rgba(0,255,136,.62); box-shadow: 0 0 35px rgba(0,255,136,.11); }
+    .nav-link { color:#aab5af; transition:.2s; }
+    .nav-link:hover { color:var(--neon); }
+    .accordion-content { max-height:0; overflow:hidden; transition:max-height .35s ease; }
+    .accordion.open .accordion-content { max-height:180px; }
+    .accordion.open .plus { transform:rotate(45deg); }
+    .plus { transition:transform .25s ease; }
+    .marquee {
+      animation: marquee 18s linear infinite;
+      width:max-content;
+    }
+    @keyframes marquee { from {transform:translateX(0)} to {transform:translateX(-50%)} }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior:auto; }
+      *,*::before,*::after { animation:none !important; transition:none !important; }
+      .fade-up { opacity:1; transform:none; }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="fixed top-0 left-0 right-0 z-50">
+    <nav class="glass border-x-0 border-t-0">
+      <div class="max-w-7xl mx-auto px-5 lg:px-8 h-16 flex items-center justify-between">
+        <a href="#home" class="font-extrabold tracking-tight text-lg">
+          RAGNAR<span class="neon">BOTZ</span><span class="text-xs text-gray-500 ml-2">SC RENTAL</span>
+        </a>
+        <div class="hidden md:flex items-center gap-7 text-sm">
+          <a class="nav-link" href="#fitur">Fitur</a>
+          <a class="nav-link" href="#harga">Harga</a>
+          <a class="nav-link" href="#cara-order">Cara Order</a>
+          <a class="nav-link" href="#faq">FAQ</a>
+          <a class="neon-bg glow-btn rounded-full px-5 py-2 font-bold" href="#harga">Sewa Sekarang</a>
+        </div>
+        <button id="menuBtn" class="md:hidden glass rounded-xl p-2" aria-label="Buka menu">
+          <span class="block w-5 h-0.5 bg-white mb-1.5"></span>
+          <span class="block w-5 h-0.5 bg-white mb-1.5"></span>
+          <span class="block w-5 h-0.5 bg-white"></span>
+        </button>
+      </div>
+      <div id="mobileMenu" class="hidden md:hidden px-5 pb-4">
+        <div class="glass rounded-2xl p-3 flex flex-col gap-1">
+          <a class="p-3 rounded-xl hover:bg-white/5" href="#fitur">Fitur</a>
+          <a class="p-3 rounded-xl hover:bg-white/5" href="#harga">Harga</a>
+          <a class="p-3 rounded-xl hover:bg-white/5" href="#cara-order">Cara Order</a>
+          <a class="p-3 rounded-xl hover:bg-white/5" href="#faq">FAQ</a>
+          <a class="neon-bg rounded-xl px-4 py-3 font-bold text-center mt-1" href="#harga">Sewa Sekarang</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section id="home" class="relative min-h-screen flex items-center pt-24 overflow-hidden">
+      <div class="absolute inset-0 grid-bg opacity-60"></div>
+      <div class="hero-orb -top-24 right-0"></div>
+      <div class="hero-orb bottom-0 left-0"></div>
+
+      <div class="relative max-w-7xl mx-auto px-5 lg:px-8 py-20 w-full">
+        <div class="max-w-4xl mx-auto text-center fade-up">
+          <div class="inline-flex items-center gap-2 glass rounded-full px-4 py-2 text-xs sm:text-sm text-gray-300 mb-6">
+            <span class="w-2 h-2 rounded-full neon-bg animate-pulse"></span>
+            SCRIPT BOT WHATSAPP PREMIUM
+          </div>
+          <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-tight">
+            SEWA SC BOT <span class="neon">RAGNARBOTZ</span>
+          </h1>
+          <p class="mt-6 text-base sm:text-lg lg:text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
+            Script Bot WhatsApp Terlengkap <b class="text-gray-200">48+ Fitur Plugin</b> |
+            <b class="text-gray-200">Anti Delay</b> | <b class="text-gray-200">Update Otomatis</b>
+          </p>
+
+          <div class="mt-9 flex flex-col sm:flex-row justify-center gap-3">
+            <a href="#harga" class="neon-bg glow-btn rounded-xl px-7 py-3.5 font-bold hover:scale-[1.02] transition">
+              Sewa Sekarang →
+            </a>
+            <a href="#fitur" class="glass rounded-xl px-7 py-3.5 font-semibold hover:border-[#00ff88]/40 transition">
+              Lihat Fitur
+            </a>
+          </div>
+
+          <div class="mt-10 flex flex-wrap justify-center gap-3 text-xs sm:text-sm text-gray-400">
+            <span class="glass rounded-full px-4 py-2">⚡ Anti Delay</span>
+            <span class="glass rounded-full px-4 py-2">🔄 Free Update</span>
+            <span class="glass rounded-full px-4 py-2">🛠️ Free Install</span>
+            <span class="glass rounded-full px-4 py-2">🛡️ Garansi 24 Jam</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="border-y border-white/5 bg-black/20">
+      <div class="max-w-7xl mx-auto px-5 lg:px-8 py-7">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-5 text-center">
+          <div><div class="text-2xl font-extrabold neon">48+</div><div class="text-xs text-gray-500 mt-1">Plugin Fitur</div></div>
+          <div><div class="text-2xl font-extrabold neon">24H</div><div class="text-xs text-gray-500 mt-1">Garansi</div></div>
+          <div><div class="text-2xl font-extrabold neon">Auto</div><div class="text-xs text-gray-500 mt-1">Update</div></div>
+          <div><div class="text-2xl font-extrabold neon">24/7</div><div class="text-xs text-gray-500 mt-1">Bot Online</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FITUR -->
+    <section id="fitur" class="py-20 sm:py-24">
+      <div class="max-w-7xl mx-auto px-5 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto fade-up">
+          <p class="neon text-sm font-bold tracking-widest uppercase">Powerful Plugin</p>
+          <h2 class="text-3xl sm:text-4xl font-extrabold mt-2">48+ Fitur Siap Pakai</h2>
+          <p class="text-gray-400 mt-4">Semua kebutuhan bot WhatsApp dalam satu script, praktis dan mudah digunakan.</p>
+        </div>
+
+        <div id="featureGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 mt-12"></div>
+
+        <div class="mt-7 glass rounded-2xl p-6 text-center fade-up">
+          <div class="text-2xl">🚀</div>
+          <h3 class="font-bold mt-2">48+ Plugin Lainnya</h3>
+          <p class="text-sm text-gray-500 mt-1">Masih banyak command dan plugin yang siap digunakan.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY -->
+    <section class="py-20 bg-white/[.015] border-y border-white/5">
+      <div class="max-w-7xl mx-auto px-5 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto fade-up">
+          <p class="neon text-sm font-bold tracking-widest uppercase">Kenapa RAGNARBOTZ?</p>
+          <h2 class="text-3xl sm:text-4xl font-extrabold mt-2">Bukan Sekadar Bot Biasa</h2>
+          <p class="text-gray-400 mt-4">Dibuat untuk kamu yang ingin bot WhatsApp lengkap tanpa ribet setup dari nol.</p>
+        </div>
+        <div class="grid md:grid-cols-3 gap-5 mt-12">
+          <div class="glass glow rounded-2xl p-7 fade-up">
+            <div class="text-3xl">⚡</div><h3 class="font-bold text-lg mt-5">Cepat & Anti Delay</h3>
+            <p class="text-gray-400 text-sm leading-relaxed mt-2">Optimasi performa agar command terasa responsif saat digunakan.</p>
+          </div>
+          <div class="glass glow rounded-2xl p-7 fade-up">
+            <div class="text-3xl">🔄</div><h3 class="font-bold text-lg mt-5">Update Berkala</h3>
+            <p class="text-gray-400 text-sm leading-relaxed mt-2">Dapatkan pembaruan script dan plugin tanpa perlu mulai dari awal.</p>
+          </div>
+          <div class="glass glow rounded-2xl p-7 fade-up">
+            <div class="text-3xl">🛠️</div><h3 class="font-bold text-lg mt-5">Dibantu Setup</h3>
+            <p class="text-gray-400 text-sm leading-relaxed mt-2">Free install dan dukungan awal supaya bot siap dipakai.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HARGA -->
+    <section id="harga" class="py-20 sm:py-24">
+      <div class="max-w-7xl mx-auto px-5 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto fade-up">
+          <p class="neon text-sm font-bold tracking-widest uppercase">Pricelist</p>
+          <h2 class="text-3xl sm:text-4xl font-extrabold mt-2">Pilih Paket Sewa</h2>
+          <p class="text-gray-400 mt-4">Mulai dari Rp5.000. Pilih durasi sesuai kebutuhan kamu.</p>
+        </div>
+
+        <div id="priceGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-12"></div>
+
+        <div class="glass rounded-2xl p-5 mt-8 fade-up">
+          <div class="grid sm:grid-cols-3 gap-4 text-center text-sm">
+            <div><span class="neon">✓</span> Free Update</div>
+            <div><span class="neon">✓</span> Free Install</div>
+            <div><span class="neon">✓</span> Garansi 24 Jam</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CARA ORDER -->
+    <section id="cara-order" class="py-20 bg-white/[.015] border-y border-white/5">
+      <div class="max-w-6xl mx-auto px-5 lg:px-8">
+        <div class="text-center fade-up">
+          <p class="neon text-sm font-bold tracking-widest uppercase">Simple Order</p>
+          <h2 class="text-3xl sm:text-4xl font-extrabold mt-2">Cara Order</h2>
+        </div>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-12">
+          <div class="glass rounded-2xl p-6 fade-up">
+            <div class="w-11 h-11 rounded-xl neon-bg font-extrabold flex items-center justify-center">01</div>
+            <h3 class="font-bold mt-5">Pilih Paket Sewa</h3>
+            <p class="text-sm text-gray-400 mt-2">Tentukan durasi yang sesuai kebutuhanmu.</p>
+          </div>
+          <div class="glass rounded-2xl p-6 fade-up">
+            <div class="w-11 h-11 rounded-xl neon-bg font-extrabold flex items-center justify-center">02</div>
+            <h3 class="font-bold mt-5">Klik Order WhatsApp</h3>
+            <p class="text-sm text-gray-400 mt-2">Klik tombol order dan kirim format pesanan.</p>
+          </div>
+          <div class="glass rounded-2xl p-6 fade-up">
+            <div class="w-11 h-11 rounded-xl neon-bg font-extrabold flex items-center justify-center">03</div>
+            <h3 class="font-bold mt-5">Transfer & Kirim Bukti</h3>
+            <p class="text-sm text-gray-400 mt-2">Lakukan pembayaran sesuai instruksi admin.</p>
+          </div>
+          <div class="glass rounded-2xl p-6 fade-up">
+            <div class="w-11 h-11 rounded-xl neon-bg font-extrabold flex items-center justify-center">04</div>
+            <h3 class="font-bold mt-5">SC + Panel Dikirim</h3>
+            <p class="text-sm text-gray-400 mt-2">Setelah pembayaran terkonfirmasi, script siap dikirim.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONI -->
+    <section class="py-20">
+      <div class="max-w-7xl mx-auto px-5 lg:px-8">
+        <div class="text-center fade-up">
+          <p class="neon text-sm font-bold tracking-widest uppercase">Testimoni</p>
+          <h2 class="text-3xl sm:text-4xl font-extrabold mt-2">Kata Mereka</h2>
+        </div>
+        <div class="grid md:grid-cols-3 gap-5 mt-12">
+          <div class="glass rounded-2xl p-6 fade-up">
+            <div class="neon text-lg">★★★★★</div>
+            <p class="text-gray-300 text-sm leading-relaxed mt-4">“Fiturnya lengkap, setup juga dibantu. Cocok buat yang mau bot tanpa ribet.”</p>
+            <div class="mt-5 font-bold text-sm">— Customer RAGNARBOTZ</div>
+          </div>
+          <div class="glass rounded-2xl p-6 fade-up">
+            <div class="neon text-lg">★★★★★</div>
+            <p class="text-gray-300 text-sm leading-relaxed mt-4">“Harga sewa terjangkau dan banyak plugin yang bisa langsung dipakai.”</p>
+            <div class="mt-5 font-bold text-sm">— Customer RAGNARBOTZ</div>
+          </div>
+          <div class="glass rounded-2xl p-6 fade-up">
+            <div class="neon text-lg">★★★★★</div>
+            <p class="text-gray-300 text-sm leading-relaxed mt-4">“Order cepat, respons admin mantap. Bot langsung bisa digunakan.”</p>
+            <div class="mt-5 font-bold text-sm">— Customer RAGNARBOTZ</div>
+          </div>
+        </div>
+        <p class="text-center text-xs text-gray-600 mt-5">*Testimoni di atas adalah contoh tampilan. Silakan ganti dengan testimoni pelanggan asli.</p>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="py-20 bg-white/[.015] border-y border-white/5">
+      <div class="max-w-3xl mx-auto px-5 lg:px-8">
+        <div class="text-center fade-up">
+          <p class="neon text-sm font-bold tracking-widest uppercase">FAQ</p>
+          <h2 class="text-3xl sm:text-4xl font-extrabold mt-2">Pertanyaan Umum</h2>
+        </div>
+
+        <div class="space-y-3 mt-10">
+          <div class="accordion glass rounded-2xl fade-up">
+            <button class="w-full p-5 flex items-center justify-between text-left font-semibold">
+              <span>Apakah bisa COD?</span><span class="plus text-2xl neon">+</span>
+            </button>
+            <div class="accordion-content px-5"><p class="pb-5 text-sm text-gray-400">Untuk order digital seperti SC bot, pembayaran dilakukan secara online. Hubungi admin untuk metode pembayaran yang tersedia.</p></div>
+          </div>
+          <div class="accordion glass rounded-2xl fade-up">
+            <button class="w-full p-5 flex items-center justify-between text-left font-semibold">
+              <span>Apakah dapat update?</span><span class="plus text-2xl neon">+</span>
+            </button>
+            <div class="accordion-content px-5"><p class="pb-5 text-sm text-gray-400">Ya. Paket sewa mencakup Free Update sesuai ketentuan layanan RAGNARBOTZ.</p></div>
+          </div>
+          <div class="accordion glass rounded-2xl fade-up">
+            <button class="w-full p-5 flex items-center justify-between text-left font-semibold">
+              <span>Apakah ada garansi?</span><span class="plus text-2xl neon">+</span>
+            </button>
+            <div class="accordion-content px-5"><p class="pb-5 text-sm text-gray-400">Ya, tersedia Garansi 24 Jam sesuai ketentuan layanan. Detail garansi dapat dikonfirmasi ke admin sebelum pembayaran.</p></div>
+          </div>
+          <div class="accordion glass rounded-2xl fade-up">
+            <button class="w-full p-5 flex items-center justify-between text-left font-semibold">
+              <span>Apakah install dibantu?</span><span class="plus text-2xl neon">+</span>
+            </button>
+            <div class="accordion-content px-5"><p class="pb-5 text-sm text-gray-400">Ya, Free Install termasuk dalam paket sehingga kamu tidak perlu setup sendirian.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-20">
+      <div class="max-w-5xl mx-auto px-5 lg:px-8">
+        <div class="relative overflow-hidden glass glow rounded-3xl p-8 sm:p-12 text-center fade-up">
+          <div class="absolute w-64 h-64 rounded-full bg-[#00ff88]/10 blur-3xl -top-32 left-1/2 -translate-x-1/2"></div>
+          <div class="relative">
+            <p class="neon font-bold text-sm tracking-widest uppercase">Siap Mulai?</p>
+            <h2 class="text-3xl sm:text-5xl font-extrabold mt-3">Sewa Bot Sekarang 🚀</h2>
+            <p class="text-gray-400 mt-4 max-w-xl mx-auto">Pilih paket, order lewat WhatsApp, lalu bot siap digunakan.</p>
+            <a href="#" data-wa class="inline-flex neon-bg glow-btn rounded-xl px-7 py-3.5 font-bold mt-7">Order via WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8 py-12">
+      <div class="grid md:grid-cols-3 gap-8">
+        <div>
+          <div class="font-extrabold text-xl">RAGNAR<span class="neon">BOTZ</span></div>
+          <p class="text-sm text-gray-500 mt-3 max-w-sm">Sewa SC Bot WhatsApp dengan 48+ plugin, performa responsif, free install dan update.</p>
+        </div>
+        <div>
+          <h3 class="font-bold">Kontak</h3>
+          <p class="text-sm text-gray-500 mt-3">WhatsApp: <a class="neon" href="#" data-wa>6288976255131</a></p>
+        </div>
+        <div>
+          <h3 class="font-bold">Navigasi</h3>
+          <div class="flex flex-wrap gap-4 text-sm text-gray-500 mt-3">
+            <a class="hover:text-[#00ff88]" href="#fitur">Fitur</a>
+            <a class="hover:text-[#00ff88]" href="#harga">Harga</a>
+            <a class="hover:text-[#00ff88]" href="#faq">FAQ</a>
+            <a class="hover:text-[#00ff88]" href="#cara-order">Order</a>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-white/5 mt-9 pt-6 text-xs text-gray-600 flex flex-col sm:flex-row justify-between gap-2">
+        <span>© 2026 RAGNARBOTZ. All Rights Reserved.</span>
+        <span>Made for WhatsApp Bot Rental.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const WA_NUMBER = "6288976255131";
+
+    const features = [
+      ["🤖","ai","AI Chat & ChatGPT"],
+      ["🎌","anime","Anime, Sticker Anime, Wallpaper"],
+      ["💧","asupan","Asupan Cewek"],
+      ["🖼️","canvas","Edit Foto Canvas"],
+      ["📦","cek","Cek Resi, Cuaca, Hod"],
+      ["🎮","clan","Clan & Guild Game"],
+      ["🎨","colorgrade","Colorgrading Foto"],
+      ["🔄","convert","Convert Sticker, ToImg, ToMp3"],
+      ["⬇️","download","Download YT, TikTok, IG, FB"],
+      ["📥","downloads","Download Tambahan"],
+      ["💰","economy","Ekonomi, Bank, Slot, Casino"],
+      ["🧙","elaina","Karakter Elaina AI"],
+      ["✍️","ephoto","Ephoto Text Maker"],
+      ["😂","fun","Fun, Meme, Ngak"],
+      ["🕹️","game","Game RPG, Tebak Gambar, Susun Kata"],
+      ["📋","general","Umum, Menu, Info, Owner"],
+      ["⚙️","bot","Bot Settings"]
+    ];
+
+    const featureGrid = document.getElementById("featureGrid");
+    featureGrid.innerHTML = features.map(([icon, key, title]) => `
+      <article class="feature-card glass rounded-2xl p-4 sm:p-5 fade-up">
+        <div class="flex items-start gap-3">
+          <div class="w-10 h-10 shrink-0 rounded-xl bg-[#00ff88]/10 border border-[#00ff88]/15 flex items-center justify-center text-lg">${icon}</div>
+          <div>
+            <div class="text-[10px] uppercase tracking-widest text-[#00ff88]/60 font-bold">${key}</div>
+            <h3 class="font-semibold text-sm sm:text-base mt-1 leading-snug">${title}</h3>
+          </div>
+        </div>
+      </article>
+    `).join("");
+
+    const packages = [
+      ["1 Hari", 5000],
+      ["3 Hari", 15000],
+      ["7 Hari", 30000],
+      ["15 Hari", 65000],
+      ["30 Hari", 120000, true],
+      ["Lifetime", 250000]
+    ];
+
+    const formatRupiah = n => "Rp" + new Intl.NumberFormat("id-ID").format(n);
+
+    const priceGrid = document.getElementById("priceGrid");
+    priceGrid.innerHTML = packages.map(([name, price, popular]) => `
+      <article class="price-card glass rounded-2xl p-6 relative ${popular ? "popular" : ""} fade-up">
+        ${popular ? `<div class="absolute -top-3 left-1/2 -translate-x-1/2 neon-bg rounded-full px-4 py-1 text-[10px] font-extrabold tracking-wider whitespace-nowrap">PALING LAKU</div>` : ""}
+        <div class="text-sm text-gray-400">${name}</div>
+        <div class="text-3xl sm:text-4xl font-extrabold mt-2">${formatRupiah(price)}</div>
+        <div class="text-xs text-gray-600 mt-1">${name === "Lifetime" ? "sekali bayar" : "masa sewa"}</div>
+        <div class="h-px bg-white/5 my-5"></div>
+        <ul class="space-y-2.5 text-sm text-gray-400">
+          <li><span class="neon">✓</span> Free Update</li>
+          <li><span class="neon">✓</span> Free Install</li>
+          <li><span class="neon">✓</span> Garansi 24 Jam</li>
+        </ul>
+        <button class="order-btn w-full mt-6 rounded-xl py-3 font-bold ${popular ? "neon-bg glow-btn" : "border border-[#00ff88]/25 hover:bg-[#00ff88]/10"} transition" data-package="${name}" data-price="${price}">
+          Order ${name}
+        </button>
+      </article>
+    `).join("");
+
+    function waLink(message) {
+      return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}`;
+    }
+
+    document.querySelectorAll(".order-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const pkg = btn.dataset.package;
+        const price = formatRupiah(Number(btn.dataset.price));
+        const msg = `Halo RAGNARBOTZ 👋%0A%0ASaya ingin sewa SC Bot WhatsApp.%0A%0APaket: ${pkg}%0AHarga: ${price}%0A%0AMohon info cara pembayaran dan proses ordernya.`;
+        window.open(waLink(decodeURIComponent(msg)), "_blank");
+      });
+    });
+
+    document.querySelectorAll("[data-wa]").forEach(el => {
+      el.href = waLink("Halo RAGNARBOTZ 👋 Saya ingin sewa SC Bot WhatsApp. Mohon info paket dan cara ordernya.");
+      el.target = "_blank";
+      el.rel = "noopener";
+    });
+
+    document.querySelectorAll(".accordion button").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const item = btn.parentElement;
+        document.querySelectorAll(".accordion").forEach(other => {
+          if (other !== item) other.classList.remove("open");
+        });
+        item.classList.toggle("open");
+      });
+    });
+
+    const menuBtn = document.getElementById("menuBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+    menuBtn.addEventListener("click", () => mobileMenu.classList.toggle("hidden"));
+    document.querySelectorAll("#mobileMenu a").forEach(a => {
+      a.addEventListener("click", () => mobileMenu.classList.add("hidden"));
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: .08 });
+
+    document.querySelectorAll(".fade-up").forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
