@@ -249,13 +249,45 @@
           </div>
           <div class="glass rounded-2xl p-6 fade-up">
             <div class="w-11 h-11 rounded-xl neon-bg font-extrabold flex items-center justify-center">03</div>
-            <h3 class="font-bold mt-5">Transfer & Kirim Bukti</h3>
-            <p class="text-sm text-gray-400 mt-2">Lakukan pembayaran sesuai instruksi admin.</p>
+            <h3 class="font-bold mt-5">Scan QRIS & Bayar</h3>
+            <p class="text-sm text-gray-400 mt-2">Scan QRIS di bawah atau transfer sesuai instruksi admin.</p>
+            <button id="showQrisBtn" class="mt-4 w-full rounded-xl border border-[#00ff88]/30 hover:bg-[#00ff88]/10 py-2.5 text-sm font-bold transition">
+              📷 Lihat QRIS
+            </button>
           </div>
           <div class="glass rounded-2xl p-6 fade-up">
             <div class="w-11 h-11 rounded-xl neon-bg font-extrabold flex items-center justify-center">04</div>
             <h3 class="font-bold mt-5">SC + Panel Dikirim</h3>
             <p class="text-sm text-gray-400 mt-2">Setelah pembayaran terkonfirmasi, script siap dikirim.</p>
+          </div>
+        </div>
+
+        <!-- QRIS PREVIEW INLINE -->
+        <div class="mt-10 glass glow rounded-3xl p-6 sm:p-8 fade-up">
+          <div class="grid md:grid-cols-2 gap-8 items-center">
+            <div>
+              <p class="neon text-xs font-bold tracking-widest uppercase">Pembayaran QRIS</p>
+              <h3 class="text-2xl sm:text-3xl font-extrabold mt-2">Scan & Bayar Instan</h3>
+              <p class="text-gray-400 text-sm mt-3 leading-relaxed">
+                Mendukung semua e-wallet dan mobile banking: GoPay, OVO, DANA, ShopeePay, LinkAja, BCA, Mandiri, BRI, BNI, dan lainnya.
+              </p>
+              <ul class="mt-5 space-y-2 text-sm text-gray-400">
+                <li><span class="neon">✓</span> Proses otomatis 24 jam</li>
+                <li><span class="neon">✓</span> Tanpa biaya admin</li>
+                <li><span class="neon">✓</span> Bukti transfer langsung ke WhatsApp</li>
+              </ul>
+              <a id="inlineQrisConfirm" href="#" class="mt-6 inline-flex items-center justify-center neon-bg glow-btn rounded-xl px-6 py-3 font-bold">
+                ✅ Sudah Bayar — Kirim Bukti
+              </a>
+            </div>
+            <div class="rounded-2xl overflow-hidden border border-[#00ff88]/25 bg-white p-3">
+              <img
+                src="https://files.catbox.moe/9q6s2v.jpg"
+                alt="QRIS RAGNARBOTZ"
+                class="w-full h-auto rounded-xl"
+                loading="lazy"
+              >
+            </div>
           </div>
         </div>
       </div>
@@ -322,6 +354,12 @@
             </button>
             <div class="accordion-content px-5"><p class="pb-5 text-sm text-gray-400">Ya, Free Install termasuk dalam paket sehingga kamu tidak perlu setup sendirian.</p></div>
           </div>
+          <div class="accordion glass rounded-2xl fade-up">
+            <button class="w-full p-5 flex items-center justify-between text-left font-semibold">
+              <span>Metode pembayaran apa saja?</span><span class="plus text-2xl neon">+</span>
+            </button>
+            <div class="accordion-content px-5"><p class="pb-5 text-sm text-gray-400">Kami menerima pembayaran via QRIS (semua e-wallet & mobile banking), serta transfer bank. Scan QRIS yang tersedia di section Cara Order.</p></div>
+          </div>
         </div>
       </div>
     </section>
@@ -334,8 +372,11 @@
           <div class="relative">
             <p class="neon font-bold text-sm tracking-widest uppercase">Siap Mulai?</p>
             <h2 class="text-3xl sm:text-5xl font-extrabold mt-3">Sewa Bot Sekarang 🚀</h2>
-            <p class="text-gray-400 mt-4 max-w-xl mx-auto">Pilih paket, order lewat WhatsApp, lalu bot siap digunakan.</p>
-            <a href="#" data-wa class="inline-flex neon-bg glow-btn rounded-xl px-7 py-3.5 font-bold mt-7">Order via WhatsApp</a>
+            <p class="text-gray-400 mt-4 max-w-xl mx-auto">Pilih paket, bayar via QRIS, lalu bot siap digunakan.</p>
+            <div class="mt-7 flex flex-col sm:flex-row justify-center gap-3">
+              <a href="#" data-wa class="inline-flex neon-bg glow-btn rounded-xl px-7 py-3.5 font-bold justify-center">Order via WhatsApp</a>
+              <button id="ctaQrisBtn" class="glass rounded-xl px-7 py-3.5 font-bold hover:border-[#00ff88]/40 transition">📷 Bayar via QRIS</button>
+            </div>
           </div>
         </div>
       </div>
@@ -352,6 +393,7 @@
         <div>
           <h3 class="font-bold">Kontak</h3>
           <p class="text-sm text-gray-500 mt-3">WhatsApp: <a class="neon" href="#" data-wa>6288976255131</a></p>
+          <p class="text-sm text-gray-500 mt-1">Pembayaran: <span class="neon">QRIS</span></p>
         </div>
         <div>
           <h3 class="font-bold">Navigasi</h3>
@@ -370,9 +412,47 @@
     </div>
   </footer>
 
+  <!-- ================= MODAL QRIS ================= -->
+  <div id="qrisModal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+    <div class="glass glow rounded-3xl p-6 sm:p-8 max-w-md w-full relative max-h-[92vh] overflow-y-auto">
+      <button id="closeQris" class="absolute top-4 right-4 w-9 h-9 rounded-full glass flex items-center justify-center text-xl font-bold hover:bg-white/10" aria-label="Tutup">×</button>
+      <div class="text-center">
+        <p class="neon text-xs font-bold tracking-widest uppercase">Pembayaran QRIS</p>
+        <h3 class="text-2xl font-extrabold mt-2">Scan untuk Bayar</h3>
+        <p class="text-sm text-gray-400 mt-2">Support semua e-wallet & mobile banking</p>
+
+        <div id="qrisPackageInfo" class="mt-4 hidden glass rounded-xl p-3 text-sm">
+          <div class="flex justify-between py-0.5"><span class="text-gray-400">Paket</span><span id="qrisPkgName" class="font-bold">-</span></div>
+          <div class="flex justify-between py-0.5"><span class="text-gray-400">Harga</span><span id="qrisPkgPrice" class="font-bold neon">-</span></div>
+        </div>
+
+        <div class="mt-5 rounded-2xl overflow-hidden border border-[#00ff88]/25 bg-white p-3">
+          <img
+            src="https://files.catbox.moe/9q6s2v.jpg"
+            alt="QRIS RAGNARBOTZ"
+            class="w-full h-auto rounded-xl"
+            loading="lazy"
+          >
+        </div>
+
+        <div class="mt-5 glass rounded-xl p-4 text-left text-sm">
+          <div class="flex justify-between py-1"><span class="text-gray-400">Merchant</span><span class="font-bold">RAGNARBOTZ</span></div>
+          <div class="flex justify-between py-1"><span class="text-gray-400">Metode</span><span class="font-bold neon">QRIS</span></div>
+          <div class="flex justify-between py-1"><span class="text-gray-400">Status</span><span class="font-bold">Menunggu Pembayaran</span></div>
+        </div>
+
+        <a id="qrisConfirm" href="#" class="mt-6 inline-flex w-full items-center justify-center neon-bg glow-btn rounded-xl px-6 py-3.5 font-bold">
+          ✅ Sudah Bayar — Kirim Bukti
+        </a>
+        <p class="text-[11px] text-gray-500 mt-3">Setelah bayar, kirim screenshot bukti transfer ke WhatsApp admin.</p>
+      </div>
+    </div>
+  </div>
+
   <script>
     const WA_NUMBER = "6288976255131";
 
+    // ================= FITUR =================
     const features = [
       ["🤖","ai","AI Chat & ChatGPT"],
       ["🎌","anime","Anime, Sticker Anime, Wallpaper"],
@@ -406,6 +486,7 @@
       </article>
     `).join("");
 
+    // ================= PAKET HARGA =================
     const packages = [
       ["1 Hari", 5000],
       ["3 Hari", 15000],
@@ -436,25 +517,97 @@
       </article>
     `).join("");
 
+    // ================= WHATSAPP LINK =================
     function waLink(message) {
       return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}`;
     }
 
+    // ================= MODAL QRIS =================
+    const qrisModal = document.getElementById("qrisModal");
+    const closeQris = document.getElementById("closeQris");
+    const showQrisBtn = document.getElementById("showQrisBtn");
+    const ctaQrisBtn = document.getElementById("ctaQrisBtn");
+    const qrisConfirm = document.getElementById("qrisConfirm");
+    const inlineQrisConfirm = document.getElementById("inlineQrisConfirm");
+    const qrisPackageInfo = document.getElementById("qrisPackageInfo");
+    const qrisPkgName = document.getElementById("qrisPkgName");
+    const qrisPkgPrice = document.getElementById("qrisPkgPrice");
+
+    let currentPkg = "";
+    let currentPrice = "";
+
+    function openQris(pkg = "", harga = "") {
+      if (pkg && harga) {
+        currentPkg = pkg;
+        currentPrice = harga;
+        qrisPackageInfo.classList.remove("hidden");
+        qrisPkgName.textContent = pkg;
+        qrisPkgPrice.textContent = harga;
+      } else {
+        currentPkg = "";
+        currentPrice = "";
+        qrisPackageInfo.classList.add("hidden");
+      }
+      refreshQrisConfirm();
+      qrisModal.classList.remove("hidden");
+      qrisModal.classList.add("flex");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeQrisFn() {
+      qrisModal.classList.add("hidden");
+      qrisModal.classList.remove("flex");
+      document.body.style.overflow = "";
+    }
+
+    function buildBuktiMessage() {
+      if (currentPkg && currentPrice) {
+        return `Halo RAGNARBOTZ 👋\n\nSaya sudah melakukan pembayaran via QRIS.\n\nPaket: ${currentPkg}\nHarga: ${currentPrice}\n\nBerikut saya lampirkan bukti transfer. Mohon segera diproses ya.`;
+      }
+      return `Halo RAGNARBOTZ 👋\n\nSaya sudah melakukan pembayaran via QRIS.\n\nBerikut saya lampirkan bukti transfer. Mohon segera diproses ya.`;
+    }
+
+    function refreshQrisConfirm() {
+      const link = waLink(buildBuktiMessage());
+      qrisConfirm.href = link;
+      qrisConfirm.target = "_blank";
+      qrisConfirm.rel = "noopener";
+      if (inlineQrisConfirm) {
+        inlineQrisConfirm.href = link;
+        inlineQrisConfirm.target = "_blank";
+        inlineQrisConfirm.rel = "noopener";
+      }
+    }
+
+    if (showQrisBtn) showQrisBtn.addEventListener("click", () => openQris());
+    if (ctaQrisBtn) ctaQrisBtn.addEventListener("click", () => openQris());
+    if (closeQris) closeQris.addEventListener("click", closeQrisFn);
+
+    qrisModal.addEventListener("click", (e) => {
+      if (e.target === qrisModal) closeQrisFn();
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !qrisModal.classList.contains("hidden")) closeQrisFn();
+    });
+
+    // ================= TOMBOL ORDER =================
     document.querySelectorAll(".order-btn").forEach(btn => {
       btn.addEventListener("click", () => {
         const pkg = btn.dataset.package;
         const price = formatRupiah(Number(btn.dataset.price));
-        const msg = `Halo RAGNARBOTZ 👋%0A%0ASaya ingin sewa SC Bot WhatsApp.%0A%0APaket: ${pkg}%0AHarga: ${price}%0A%0AMohon info cara pembayaran dan proses ordernya.`;
-        window.open(waLink(decodeURIComponent(msg)), "_blank");
+        openQris(pkg, price);
       });
     });
 
+    // ================= LINK WA UMUM =================
     document.querySelectorAll("[data-wa]").forEach(el => {
       el.href = waLink("Halo RAGNARBOTZ 👋 Saya ingin sewa SC Bot WhatsApp. Mohon info paket dan cara ordernya.");
       el.target = "_blank";
       el.rel = "noopener";
     });
 
+    // ================= ACCORDION FAQ =================
     document.querySelectorAll(".accordion button").forEach(btn => {
       btn.addEventListener("click", () => {
         const item = btn.parentElement;
@@ -465,6 +618,7 @@
       });
     });
 
+    // ================= MOBILE MENU =================
     const menuBtn = document.getElementById("menuBtn");
     const mobileMenu = document.getElementById("mobileMenu");
     menuBtn.addEventListener("click", () => mobileMenu.classList.toggle("hidden"));
@@ -472,6 +626,7 @@
       a.addEventListener("click", () => mobileMenu.classList.add("hidden"));
     });
 
+    // ================= FADE UP OBSERVER =================
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
